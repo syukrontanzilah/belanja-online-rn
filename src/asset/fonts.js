@@ -1,9 +1,8 @@
 export const fonts = {
-    default: 'JosefinSans-Regular',
-    italic: 'JosefinSans-LightItalic',
-    bold:'JosefinSans-Bold',
-    primary: 'CascadeScript',
-    happy: '1984-Happines-Regular',
-    tiki: 'Tiki Tropic'
+    default: 'Boogaloo-Regular',
+    acme: 'Acme-Regular',
+    capital: 'alpha_echo',
+    keren: 'DESTROY_'
+
 
 }
