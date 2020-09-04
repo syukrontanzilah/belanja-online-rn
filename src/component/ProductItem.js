@@ -6,7 +6,10 @@ import { fonts } from '../asset/fonts'
 
 const ProductItem = (props) => {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity 
+        activeOpacity={0.9}
+        onPress={props.onViewDetail}
+        style={styles.container}>
             <Image source={{ uri: props.image }}
                 style={styles.image}
             />
@@ -35,7 +38,7 @@ const ProductItem = (props) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
