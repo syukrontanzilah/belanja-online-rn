@@ -1,15 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View, StatusBar } from 'react-native'
-import ProductsOverviewScreen from './screens/shop/ProductsOverviewScreen'
-import ProductDetailScreen from './screens/shop/ProductDetailScreen'
-import CartScreen from './screens/shop/CartScreen'
-import OrdersScreen from './screens/shop/OrdersScreen'
-import UserProductScreen from './screens/user/UserProductScreen'
-import EditProductScreen from './screens/user/EditProductScreen'
-import { createStore, combineReducers } from 'redux'
+import { StyleSheet } from 'react-native'
 import { Provider } from 'react-redux'
-import productsReducer from './store/reducers/products'
+import { combineReducers, createStore } from 'redux'
 import ShopNavigator from './navigation/ShopNavigator'
+import productsReducer from './store/reducers/products'
 
 const rootReducer = combineReducers({
   products: productsReducer
