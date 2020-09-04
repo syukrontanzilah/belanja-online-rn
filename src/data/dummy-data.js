@@ -34,7 +34,7 @@ const PRODUCTS = [
         'p4',
         'u3',
         'Shirt Book 0989- Limited Edition',
-        'https://i.shgcdn.com/66063d87-5528-49cb-a82f-45bcaac24f92/-/format/auto/-/preview/3000x3000/-/quality/lighter/',
+        'https://images.unsplash.com/photo-1553754538-466add009c05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
         "What the content is? Why would that matter? It's a limited edition!",
         15.99,
         ["S", "M","L", "XL"]
@@ -56,10 +56,28 @@ const PRODUCTS = [
         'u1',
         'Shirt Paper',
         'https://i.pinimg.com/originals/f1/86/55/f186556d8c4cd89f1d499fdc122c924a.jpg',
-        "Can be used for role-playing (not the kind of role-playing you're thinking about...).",
+        "High quality shirt for you who have soul in adventure and fashion",
         15.49,
         ["S", "M","L", "XL", "XXL"]
 
+    ),
+    new Product(
+        'p7',
+        'u3',
+        'Shirt blue wow',
+        'https://i.pinimg.com/originals/e3/b9/c6/e3b9c60befd6a003c51c9017253f9100.jpg',
+        'Incridible shirt to you who have hight class',
+        12.99,
+        ["M","L", "XL"]
+    ),
+    new Product(
+        'p8',
+        'u1',
+        'Shirt bamboo',
+        'https://cdn11.bigcommerce.com/s-d083xn2/images/stencil/1280x1280/products/908/10765/Bamboo_T-shirt_No_Pocket_-_Tan__91088.1536796674.jpg?c=2',
+        'Incridible shirt to you who have hight class',
+        12.99,
+        ["M","L", "XL"]
     )
 
 ]

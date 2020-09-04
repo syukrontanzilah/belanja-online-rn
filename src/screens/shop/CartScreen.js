@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, ScrollView, TouchableOpacity } from '
 import { useSelector } from 'react-redux'
 import { fonts } from '../../asset/fonts'
 import Colors from '../../constant/Colors'
+import CartItem from '../../component/CartItem'
 
 
 const CartScreen = (props) => {
@@ -25,17 +26,27 @@ const CartScreen = (props) => {
 
             <View style={styles.summary}>
                 <Text style={styles.total}>Total: <Text style={{ color: Colors.primary, fontSize: 30 }}>${cartTotalAmount.toFixed(2)}</Text> </Text>
-                <TouchableOpacity style={styles.button} disabled={cartItems.length === 0}>
+                <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={[styles.button, { backgroundColor: cartItems.length === 0 ? 'lightgray' : Colors.primary }]} disabled={cartItems.length === 0}>
                     <Text style={styles.textButton}>Order Now</Text>
                 </TouchableOpacity>
             </View>
 
-            <View>
-                <Text>CART LIST</Text>
+            <View style={{marginLeft:25, marginBottom:10}}>
+                <Text style={{ fontSize: 20, fontFamily: fonts.default, color: Colors.gray }}>{ cartItems.length === 0 ? "No Order yet :(" : "My Order List:"} </Text>
             </View>
 
-            <FlatList
 
+            <FlatList
+                data={cartItems}
+                keyExtractor={item => item.productId}
+                renderItem={itemData => <CartItem
+                    quantity={itemData.item.quantity}
+                    title={itemData.item.productTitle}
+                    amount={itemData.item.sum}
+                    onRemove={() => { }}
+                />}
             />
 
         </View>
