@@ -5,7 +5,8 @@ class Product {
         title, 
         imageUrl, 
         description, 
-        price
+        price,
+        size
         ) 
         {
         this.id = id;
@@ -14,6 +15,7 @@ class Product {
         this.imageUrl = imageUrl;
         this.description = description;
         this.price = price;
+        this.size = size
     }
 }
 
