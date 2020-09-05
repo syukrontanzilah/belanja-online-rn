@@ -5,10 +5,12 @@ import { combineReducers, createStore } from 'redux'
 import ShopNavigator from './navigation/ShopNavigator'
 import productsReducer from './store/reducers/products'
 import cartReducer from '../src/store/reducers/cart'
+import orderReducer from './store/reducers/orders'
 
 const rootReducer = combineReducers({
   products: productsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  orders: orderReducer
 })
 
 const store = createStore(rootReducer)

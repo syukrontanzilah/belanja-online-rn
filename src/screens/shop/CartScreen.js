@@ -5,6 +5,7 @@ import { fonts } from '../../asset/fonts'
 import Colors from '../../constant/Colors'
 import CartItem from '../../component/CartItem'
 import * as cartActions from '../../store/actions/cart'
+import * as ordersActions from '../../store/actions/orders'
 
 
 const CartScreen = (props) => {
@@ -20,7 +21,7 @@ const CartScreen = (props) => {
                 sum: state.cart.items[key].sum
             })
         }
-        return transformedCartItems.sort((a, b)=> a.productId > b.productId ? 1 : -1);
+        return transformedCartItems.sort((a, b) => a.productId > b.productId ? 1 : -1);
     })
 
     const dispatch = useDispatch()
@@ -30,8 +31,12 @@ const CartScreen = (props) => {
             <View style={styles.summary}>
                 <Text style={styles.total}>Total: <Text style={{ color: Colors.primary, fontSize: 30 }}>${cartTotalAmount.toFixed(2)}</Text> </Text>
                 <TouchableOpacity
+                    onPress={() => {
+                        dispatch(ordersActions.addOrder(cartItems, cartTotalAmount))
+                    }}
                     activeOpacity={0.5}
-                    style={[styles.button, { backgroundColor: cartItems.length === 0 ? 'lightgray' : Colors.primary }]} disabled={cartItems.length === 0}>
+                    style={[styles.button, { backgroundColor: cartItems.length === 0 ? 'lightgray' : Colors.primary }]}
+                    disabled={cartItems.length === 0}>
                     <Text style={styles.textButton}>Order Now</Text>
                 </TouchableOpacity>
             </View>
