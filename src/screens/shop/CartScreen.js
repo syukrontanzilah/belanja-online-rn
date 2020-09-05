@@ -29,7 +29,7 @@ const CartScreen = (props) => {
     return (
         <View style={styles.page}>
             <View style={styles.summary}>
-                <Text style={styles.total}>Total: <Text style={{ color: Colors.primary, fontSize: 30 }}>${cartTotalAmount.toFixed(2)}</Text> </Text>
+                <Text style={styles.total}>Total: <Text style={{ color: cartItems.length === 0 ? "lightgray" : Colors.primary, fontSize: 30 }}>${cartTotalAmount.toFixed(2)}</Text> </Text>
                 <TouchableOpacity
                     onPress={() => {
                         dispatch(ordersActions.addOrder(cartItems, cartTotalAmount))
@@ -37,7 +37,7 @@ const CartScreen = (props) => {
                     activeOpacity={0.5}
                     style={[styles.button, { backgroundColor: cartItems.length === 0 ? 'lightgray' : Colors.primary }]}
                     disabled={cartItems.length === 0}>
-                    <Text style={styles.textButton}>Order Now</Text>
+                    <Text style={styles.textButton}>{ cartItems.length === 0?'Order Empty' : 'Order Now'}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -51,7 +51,7 @@ const CartScreen = (props) => {
                 renderItem={itemData => <CartItem
                     quantity={itemData.item.quantity}
                     title={itemData.item.productTitle}
-                    amount={itemData.item.sum}
+                    amount={itemData.item.sum.toFixed(2)}
                     onRemove={() => {
                         dispatch(cartActions.removeFromCart(itemData.item.productId))
                     }}
