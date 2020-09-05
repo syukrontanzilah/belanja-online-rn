@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import CartItem from './CartItem'
 import { fonts } from '../asset/fonts'
@@ -6,6 +6,7 @@ import Colors from '../constant/Colors';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const OrderItem = (props) => {
+    const [showDetails, setShowDetails] = useState(false)
     return (
         <View style={styles.container}>
           <View>
@@ -18,11 +19,22 @@ const OrderItem = (props) => {
           
             
                 <TouchableOpacity
-                    activeOpacity={0.5}
-                    style={styles.button}>
-                    <Text style={styles.textButton}>Show Details</Text>
+                onPress={()=> {
+                    setShowDetails(prevState => !prevState)
+                }}
+                    activeOpacity={0.7}
+                    style={[styles.button, {backgroundColor: showDetails? Colors.gray : Colors.violet}]}>
+                    <Text style={styles.textButton}>{showDetails?'Hide':'Show Details'}</Text>
                 </TouchableOpacity>
-          
+          {
+              showDetails && (<View>
+                  {props.items.map(cartItem => <CartItem
+                  quantity={cartItem.quantity}
+                  amount={cartItem.sum}
+                  title={cartItem.productTitle}
+                  />)}
+              </View>)
+          }
 
         </View>
     )
@@ -37,7 +49,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         borderRadius: 5,
         justifyContent: 'space-between',
-        flexDirection:'row'
+        // flexDirection:'row'
     },
     summary: {
         flexDirection: 'row',
@@ -56,11 +68,13 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: Colors.violet,
         paddingVertical: 8,
-        paddingHorizontal: 5,
+        paddingHorizontal: 0,
         // alignSelf: 'flex-end',
         borderRadius: 5,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        width:80,
+        marginTop:3
     },
     textButton: {
         fontFamily: fonts.default,

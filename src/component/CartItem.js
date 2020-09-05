@@ -8,7 +8,7 @@ const CartItem = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.itemData}>
-                <Image/>
+                <Image />
                 <Text style={styles.qty}>{" "}{props.quantity}{" "} </Text>
                 <Text numberOfLines={1} style={styles.title}>{props.title} </Text>
             </View>
@@ -17,12 +17,16 @@ const CartItem = (props) => {
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Text style={styles.amount}>${props.amount}</Text>
                 {/* .toFix(2) */}
-                <TouchableOpacity
-                    onPress={props.onRemove}
-                    style={styles.trashButton}
-                >
-                    <Ionicons name="ios-trash" size={23} color="salmon" />
-                </TouchableOpacity>
+
+                { props.deletable &&
+                    <TouchableOpacity
+                        onPress={props.onRemove}
+                        style={styles.trashButton}
+                    >
+                        <Ionicons name="ios-trash" size={23} color="salmon" />
+                    </TouchableOpacity>
+                }
+
             </View>
 
         </View>

@@ -13,12 +13,14 @@ const OrdersScreen = (props) => {
         <View style={styles.screen}>
 
             <FlatList
+            showsVerticalScrollIndicator={false}
                 data={orders}
                 keyExtractor={item => item.id}
                 renderItem={itemData => 
                 <OrderItem
-                amount={itemData.item.totalAmount}
+                amount={itemData.item.totalAmount.toFixed(2)}
                 date = {itemData.item.readableDate}
+                items={itemData.item.items}
                 />}
             />
         </View>
@@ -46,6 +48,6 @@ export default OrdersScreen
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        margin:10
+        marginHorizontal:10
     }
 })

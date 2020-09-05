@@ -37,12 +37,12 @@ const CartScreen = (props) => {
                     activeOpacity={0.5}
                     style={[styles.button, { backgroundColor: cartItems.length === 0 ? 'lightgray' : Colors.primary }]}
                     disabled={cartItems.length === 0}>
-                    <Text style={styles.textButton}>{ cartItems.length === 0?'Order Empty' : 'Order Now'}</Text>
+                    <Text style={styles.textButton}>{ cartItems.length === 0?'Cart Empty' : 'Order Now'}</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={{ marginLeft: 25, marginBottom: 10 }}>
-                <Text style={{ fontSize: 20, fontFamily: fonts.default, color: Colors.gray }}>{cartItems.length === 0 ? "No Order yet :(" : "My Order List:"} </Text>
+                <Text style={{ fontSize: 20, fontFamily: fonts.default, color: Colors.gray }}>{cartItems.length === 0 ? "My Cart is empty :(" : "My Cart List:"} </Text>
             </View>
 
             <FlatList
@@ -52,6 +52,7 @@ const CartScreen = (props) => {
                     quantity={itemData.item.quantity}
                     title={itemData.item.productTitle}
                     amount={itemData.item.sum.toFixed(2)}
+                    deletable
                     onRemove={() => {
                         dispatch(cartActions.removeFromCart(itemData.item.productId))
                     }}
