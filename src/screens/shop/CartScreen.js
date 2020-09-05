@@ -62,6 +62,10 @@ const CartScreen = (props) => {
     )
 }
 
+CartScreen.navigationOptions = {
+    headerTitle: 'My Cart'
+}
+
 export default CartScreen
 
 const styles = StyleSheet.create({
