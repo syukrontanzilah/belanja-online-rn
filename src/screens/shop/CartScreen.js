@@ -1,9 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, ScrollView, TouchableOpacity } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { fonts } from '../../asset/fonts'
 import Colors from '../../constant/Colors'
 import CartItem from '../../component/CartItem'
+import * as cartActions from '../../store/actions/cart'
 
 
 const CartScreen = (props) => {
@@ -19,11 +20,13 @@ const CartScreen = (props) => {
                 sum: state.cart.items[key].sum
             })
         }
-        return transformedCartItems;
+        return transformedCartItems.sort((a, b)=> a.productId > b.productId ? 1 : -1);
     })
+
+    const dispatch = useDispatch()
+
     return (
         <View style={styles.page}>
-
             <View style={styles.summary}>
                 <Text style={styles.total}>Total: <Text style={{ color: Colors.primary, fontSize: 30 }}>${cartTotalAmount.toFixed(2)}</Text> </Text>
                 <TouchableOpacity
@@ -33,10 +36,9 @@ const CartScreen = (props) => {
                 </TouchableOpacity>
             </View>
 
-            <View style={{marginLeft:25, marginBottom:10}}>
-                <Text style={{ fontSize: 20, fontFamily: fonts.default, color: Colors.gray }}>{ cartItems.length === 0 ? "No Order yet :(" : "My Order List:"} </Text>
+            <View style={{ marginLeft: 25, marginBottom: 10 }}>
+                <Text style={{ fontSize: 20, fontFamily: fonts.default, color: Colors.gray }}>{cartItems.length === 0 ? "No Order yet :(" : "My Order List:"} </Text>
             </View>
-
 
             <FlatList
                 data={cartItems}
@@ -45,7 +47,9 @@ const CartScreen = (props) => {
                     quantity={itemData.item.quantity}
                     title={itemData.item.productTitle}
                     amount={itemData.item.sum}
-                    onRemove={() => { }}
+                    onRemove={() => {
+                        dispatch(cartActions.removeFromCart(itemData.item.productId))
+                    }}
                 />}
             />
 

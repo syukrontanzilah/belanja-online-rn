@@ -8,14 +8,14 @@ const CartItem = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.itemData}>
-                <Image></Image>
+                <Image/>
                 <Text style={styles.qty}>{" "}{props.quantity}{" "} </Text>
                 <Text numberOfLines={1} style={styles.title}>{props.title} </Text>
             </View>
 
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={styles.amount}>${props.amount}</Text>
+                <Text style={styles.amount}>${props.amount.toFixed(2)}</Text>
                 {/* .toFix(2) */}
                 <TouchableOpacity
                     onPress={props.onRemove}
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius: 5,
         marginBottom: 8,
-        paddingVertical: 20
+        paddingVertical: 15
 
     },
     itemData: {
