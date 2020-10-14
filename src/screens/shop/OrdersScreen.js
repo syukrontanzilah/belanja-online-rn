@@ -9,9 +9,9 @@ import OrderItem from '../../component/OrderItem'
 
 const OrdersScreen = (props) => {
     const orders = useSelector(state => state.orders.orders)
-    if(orders.length === 0 || !orders){
-      return <View style={{flex:1, justifyContent:'center', alignItems:'center',}}><Image style={{opacity:0.2, borderRadius:50}} source={require('../../asset/cartempty.jpg')}/><Text style={{fontFamily: fonts.default, fontSize:20, marginBottom:10, color: Colors.primary}}>Opps.. you have not Order</Text>
-      <Button color={Colors.primary} onPress={()=> {props.navigation.navigate('ProductsOverview')}} title="Try to see our produck :)"/></View>  
+    if (orders.length === 0 || !orders) {
+        return <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}><Image style={{ opacity: 0.2, borderRadius: 50 }} source={require('../../asset/cartempty.jpg')} /><Text style={{ fontFamily: fonts.default, fontSize: 20, marginBottom: 10, color: Colors.primary }}>Opps.. you have not Order</Text>
+            <Button color={Colors.primary} onPress={() => { props.navigation.navigate('ProductsOverview') }} title="Try to see our product :)" /></View>
     }
     return (
         <View style={styles.screen}>
@@ -20,11 +20,11 @@ const OrdersScreen = (props) => {
                 data={orders}
                 keyExtractor={item => item.id}
                 renderItem={itemData =>
-                               <OrderItem
-                            amount={itemData.item.totalAmount.toFixed(2)}
-                            date={itemData.item.readableDate}
-                            items={itemData.item.items}
-                        />
+                    <OrderItem
+                        amount={itemData.item.totalAmount.toFixed(2)}
+                        date={itemData.item.readableDate}
+                        items={itemData.item.items}
+                    />
                 }
             />
         </View>

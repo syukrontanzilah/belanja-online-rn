@@ -8,6 +8,8 @@ import { fonts } from '../asset/fonts';
 import CartScreen from '../screens/shop/CartScreen';
 import OrdersScreen from '../screens/shop/OrdersScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import UserProductScreen from '../screens/user/UserProductScreen';
+import EditProductScreen from '../screens/user/EditProductScreen';
 
 const defaultNavOptions = {
     headerStyle: {
@@ -42,6 +44,18 @@ const OrdersNavigator = createStackNavigator({
     defaultNavigationOptions: defaultNavOptions
 })
 
+const AdminNavigator = createStackNavigator({
+    UserProducts: UserProductScreen,
+    EditProduct: EditProductScreen,
+}, {
+    navigationOptions: {
+        drawerIcon: drawerConfig => <Ionicons name={"heart"} size={25} color={Colors.primary} />
+    },
+    defaultNavigationOptions: defaultNavOptions
+})
+
+
+
 const ShopNavigator = createDrawerNavigator({
     Products: {
         screen: ProductsNavigator,
@@ -54,7 +68,8 @@ const ShopNavigator = createDrawerNavigator({
         navigationOptions: {
             drawerLabel: <Text style={{fontSize:20, fontFamily: fonts.keren, color: Colors.primary, paddingVertical:10}}>Orders</Text>
         }
-    }
+    },
+    Admin : AdminNavigator
 }, {
     contentOptions: {
         activeTintColor: Colors.primary

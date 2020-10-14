@@ -29,7 +29,7 @@ const CartScreen = (props) => {
     return (
         <View style={styles.page}>
             <View style={styles.summary}>
-                <Text style={styles.total}>Total: <Text style={{ color: cartItems.length === 0 ? "lightgray" : Colors.primary, fontSize: 30 }}>${cartTotalAmount.toFixed(2)}</Text> </Text>
+                <Text style={styles.total}>Total: <Text style={{ color: cartItems.length === 0 ? "lightgray" : Colors.primary, fontSize: 30 }}>${Math.round(cartTotalAmount.toFixed(2)*100) / 100}</Text> </Text>
                 <TouchableOpacity
                     onPress={() => {
                         dispatch(ordersActions.addOrder(cartItems, cartTotalAmount))

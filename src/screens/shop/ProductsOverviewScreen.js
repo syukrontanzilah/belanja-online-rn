@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, StatusBar, FlatList } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { fonts } from '../../asset/fonts';
 import Colors from '../../constant/Colors';
@@ -10,7 +10,14 @@ import HeaderButton from '../../component/HeaderButton'
 
 const ProductsOverviewScreen = (props) => {
     const products = useSelector(state => state.products.availableProducts);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const selectItemHandler = (id, title) => {
+        props.navigation.navigate('ProductDetail', {
+            productId: id,
+            productTitle: title
+        })
+    }
 
     return (
         <View style={styles.page}>
@@ -24,16 +31,28 @@ const ProductsOverviewScreen = (props) => {
                         image={itemData.item.imageUrl}
                         title={itemData.item.title}
                         price={itemData.item.price}
-                        onViewDetail={() => {
-                            props.navigation.navigate('ProductDetail', {
-                                productId: itemData.item.id,
-                                productTitle: itemData.item.title
-                            })
+                        onSelect={() => {
+                         selectItemHandler(itemData.item.id, itemData.item.title)
                         }}
-                        onAddCart={() => {
-                            dispatch(cartActions.addToCart(itemData.item))
+                    >
+                    <TouchableOpacity
+                        onPress={()=> {
+                            selectItemHandler(itemData.item.id, itemData.item.title)
                         }}
-                    />
+                        activeOpacity={0.7}
+                        style={[styles.button, { backgroundColor: Colors.violet }]}>
+                        <Text style={styles.textButton}>Details</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={()=> {
+                        dispatch(cartActions.addToCart(itemData.item))
+                        }}
+                        activeOpacity={0.7}
+                        style={[styles.button, { backgroundColor: Colors.green }]}>
+                        <Text style={styles.textButton}>Add to Cart</Text>
+                    </TouchableOpacity> 
+                    </ProductItem>
                 }
             />
         </View>
@@ -71,5 +90,18 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 10
         // backgroundColor: 'wheat'
-    }
+    },
+    button: {
+        width: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 5,
+        borderRadius:5
+    },
+    textButton: {
+        color: 'white',
+        fontFamily: fonts.default,
+        fontSize: 20,
+        paddingVertical: 10,
+    },
 })

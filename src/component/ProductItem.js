@@ -8,7 +8,7 @@ const ProductItem = (props) => {
     return (
         <TouchableOpacity 
         activeOpacity={0.9}
-        onPress={props.onViewDetail}
+        onPress={props.onSelect}
         style={styles.container}>
             <Image source={{ uri: props.image }}
                 style={styles.image}
@@ -23,19 +23,9 @@ const ProductItem = (props) => {
                </View>
 
                 <View style={{ flexDirection: 'row', marginRight:5 }}>
-                    <TouchableOpacity
-                        onPress={props.onViewDetail}
-                        activeOpacity={0.7}
-                        style={[styles.button, { backgroundColor: Colors.violet }]}>
-                        <Text style={styles.textButton}>Details</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        onPress={props.onAddCart}
-                        activeOpacity={0.7}
-                        style={[styles.button, { backgroundColor: Colors.green }]}>
-                        <Text style={styles.textButton}>Add to Cart</Text>
-                    </TouchableOpacity>
+                   {
+                       props.children
+                   }
                 </View>
             </View>
         </TouchableOpacity>

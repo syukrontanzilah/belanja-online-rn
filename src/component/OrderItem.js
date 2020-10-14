@@ -17,7 +17,6 @@ const OrderItem = (props) => {
                 <Text style={styles.date}>Date: {props.date}</Text>
             </View>
 
-
             <TouchableOpacity
                 onPress={() => {
                     setShowDetails(prevState => !prevState)
@@ -29,13 +28,13 @@ const OrderItem = (props) => {
             {
                 showDetails && (<View>
                     {props.items.map(cartItem => <CartItem
+                    key ={cartItem.productId}
                         quantity={cartItem.quantity}
-                        amount={cartItem.sum}
+                        amount={cartItem.sum.toFixed(2)}
                         title={cartItem.productTitle}
                     />)}
                 </View>)
             }
-
         </View>
     )
 }
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'lightgray',
         padding: 10,
-        marginTop:2,
+        marginTop: 2,
         marginBottom: 6,
         borderRadius: 5,
         justifyContent: 'space-between',
@@ -75,7 +74,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: 80,
-        marginTop: -30
+        marginTop: -30,
+        marginBottom:15
     },
     textButton: {
         fontFamily: fonts.default,
