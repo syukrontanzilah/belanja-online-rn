@@ -69,7 +69,12 @@ const ShopNavigator = createDrawerNavigator({
             drawerLabel: <Text style={{fontSize:20, fontFamily: fonts.keren, color: Colors.primary, paddingVertical:10}}>Orders</Text>
         }
     },
-    Admin : AdminNavigator
+    Admin : {
+        screen:  AdminNavigator,
+        navigationOptions: {
+            drawerLabel: <Text style={{fontSize:20, fontFamily: fonts.keren, color: Colors.primary, paddingVertical:10}}>Admin</Text>
+        }
+    }
 }, {
     contentOptions: {
         activeTintColor: Colors.primary
@@ -78,4 +83,5 @@ const ShopNavigator = createDrawerNavigator({
 
 export default createAppContainer(ShopNavigator)
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+})

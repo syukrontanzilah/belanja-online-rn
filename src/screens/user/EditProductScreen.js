@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native'
 import { fonts } from '../../asset/fonts'
 import Colors from '../../constant/Colors';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons'
@@ -23,6 +23,7 @@ const EditProductScreen = (props) => {
         } else {
             dispatch(productsActions.createProduct(title, description, imageUrl, +price))
         }
+        props.navigation.goBack()
     }, [dispatch, prodId, title, description, imageUrl, price]);
 
   useEffect(()=> {
